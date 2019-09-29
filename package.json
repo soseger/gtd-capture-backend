@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "start": "npm run-script start:prod",
     "start:prod": "node ./bin/www",
     "start:dev": "nodemon ./bin/www"
   },
