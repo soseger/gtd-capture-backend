@@ -9,4 +9,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.get("/test", (req, res) => {
+  res.send("test");
+});
+
 module.exports = app;
