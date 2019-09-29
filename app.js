@@ -2,12 +2,21 @@ const express = require('express');
 const logger = require('morgan');
 const helper = require('sendgrid').mail;
 const sg = require('sendgrid')(process.env.SENDGRID_API_KEY);
+const cors = require('cors');
 
 const app = express();
 
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+  if (req.get('x-api-secret') === process.env.API_SECRET) {
+    return next();
+  }
+  return res.status(401).end();
+});
 
 app.post('/', (req, res) => {
   const from_email = new helper.Email('noreply@to.do');
