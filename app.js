@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 });
 
 app.post('/', (req, res) => {
-  const from_email = new helper.Email('noreply@to.do');
+  const from_email = new helper.Email('noreply@gtdcapture.com');
   const to_email = new helper.Email(req.body.email);
   const subject = `TODO: ${req.body.message.substring(0, 50)}...`;
   const content = new helper.Content('text/plain', req.body.message);
